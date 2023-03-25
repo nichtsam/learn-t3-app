@@ -4,6 +4,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import { api } from "~/utils/api";
 import Image from "next/image";
+import { Loading, LoadingSpinner } from "~/components/loading";
 
 const Home: NextPage = () => {
   return (
@@ -29,10 +30,16 @@ const Header = () => (
 );
 
 const CreatePostWizard = () => {
-  const { user } = useUser();
+  const { user, isLoaded } = useUser();
   console.log({ user });
 
-  if (!user) return null;
+  if (!isLoaded) return null;
+  if (!user)
+    return (
+      <div className="border--400 border-b p-4 font-bold text-red-500">
+        Something went wrong
+      </div>
+    );
 
   return (
     <div className="flex gap-4 border-b border-slate-400 p-4">
@@ -51,9 +58,15 @@ const CreatePostWizard = () => {
   );
 };
 const Posts = () => {
-  const { data } = api.post.getAll.useQuery();
+  const { data, isLoading } = api.post.getAll.useQuery();
 
-  if (!data) return null;
+  if (isLoading) return <Loading />;
+  if (!data)
+    return (
+      <div className="border--400 border-b p-4 font-bold text-red-500">
+        Something went wrong
+      </div>
+    );
 
   return (
     <div>
