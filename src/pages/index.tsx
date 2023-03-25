@@ -1,15 +1,15 @@
 import {
+  ClerkLoading,
+  SignedIn,
+  SignedOut,
   SignInButton,
   SignOutButton,
   UserProfile,
-  useUser,
 } from "@clerk/nextjs";
 import { type NextPage } from "next";
 import Head from "next/head";
 
 const Home: NextPage = () => {
-  const { isSignedIn, isLoaded } = useUser();
-
   return (
     <>
       <Head>
@@ -18,8 +18,11 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="flex min-h-screen items-center justify-center gap-2 bg-gradient-to-b from-[#2e026d] to-[#15162c]">
-        {!isLoaded && <p className="text-5xl text-white">Loading...</p>}
-        {isLoaded && !isSignedIn && (
+        <ClerkLoading>
+          <p className="text-5xl text-white">Loading...</p>
+        </ClerkLoading>
+
+        <SignedOut>
           <div className="w-48">
             <SignInButton mode="modal">
               <button className="w-full rounded-3xl bg-white p-4 text-xl font-bold">
@@ -27,8 +30,9 @@ const Home: NextPage = () => {
               </button>
             </SignInButton>
           </div>
-        )}
-        {isSignedIn && (
+        </SignedOut>
+
+        <SignedIn>
           <div className="flex flex-col gap-4 p-10">
             <UserProfile />
             <SignOutButton>
@@ -37,7 +41,7 @@ const Home: NextPage = () => {
               </button>
             </SignOutButton>
           </div>
-        )}
+        </SignedIn>
       </main>
     </>
   );
