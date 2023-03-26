@@ -6,12 +6,14 @@ import dayjs from "dayjs";
 import { api } from "~/utils/api";
 
 import "~/styles/globals.css";
+import { Toaster } from "react-hot-toast";
 
 dayjs.extend(relativeTime);
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <ClerkProvider {...pageProps}>
+      <Toaster position="bottom-left" reverseOrder={true} />
       <Component {...pageProps} />
     </ClerkProvider>
   );
