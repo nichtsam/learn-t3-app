@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@clerk/nextjs': 4.11.13
+  '@highlight-run/react': 2.0.1
   '@prisma/client': ^4.9.0
   '@tanstack/react-query': ^4.20.2
   '@trpc/client': ^10.9.0
@@ -19,6 +20,7 @@ specifiers:
   dayjs: 1.11.7
   eslint: ^8.34.0
   eslint-config-next: ^13.2.1
+  highlight.run: 5.4.1
   next: ^13.2.1
   postcss: ^8.4.14
   prettier: ^2.8.1
@@ -33,6 +35,7 @@ specifiers:
 
 dependencies:
   '@clerk/nextjs': 4.11.13_ld2jel3hspngo3u5lti2kgl2sq
+  '@highlight-run/react': 2.0.1_biqbaboplfbrettd7655fr4n2y
   '@prisma/client': 4.11.0_prisma@4.11.0
   '@tanstack/react-query': 4.28.0_biqbaboplfbrettd7655fr4n2y
   '@trpc/client': 10.18.0_@trpc+server@10.18.0
@@ -40,6 +43,7 @@ dependencies:
   '@trpc/react-query': 10.18.0_rcvfzig2xktluz4p7kugxqlbwi
   '@trpc/server': 10.18.0
   dayjs: 1.11.7
+  highlight.run: 5.4.1
   next: 13.2.4_biqbaboplfbrettd7655fr4n2y
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -183,6 +187,16 @@ packages:
     resolution: {integrity: sha512-lxJ9R5ygVm8ZWgYdUweoq5ownDlJ4upvoWmO4eLxBYHdMo+vZ/Rx0EN6MbKWDJOSUGrqJy2Gt+Dyv/VKml0fjg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
+
+  /@highlight-run/react/2.0.1_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-g2QgFblfAAlv5pkPKP6q8OuV9enmkpX5ty4aVE7PuOMwC/ZFx+qJ/qMc8H4kG6FVnHd9ts5040db1ezbeAKTLA==}
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
 
   /@humanwhocodes/config-array/0.11.8:
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}
@@ -1856,6 +1870,10 @@ packages:
     dependencies:
       function-bind: 1.1.1
     dev: true
+
+  /highlight.run/5.4.1:
+    resolution: {integrity: sha512-fPNr0kdIpNAc/6wNTTgwMn6M0KGv1DKVllHcMjUg6ahJylXjSQ9JU8ZqR414FGN00bz/qGnzwhy48IQBmMgf+g==}
+    dev: false
 
   /ignore/5.2.4:
     resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}
