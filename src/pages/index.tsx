@@ -5,6 +5,7 @@ import Head from "next/head";
 import { api } from "~/utils/api";
 import Image from "next/image";
 import { Loading, LoadingSpinner } from "~/components/loading";
+import { type ChangeEventHandler, useState } from "react";
 
 const Home: NextPage = () => {
   return (
@@ -31,7 +32,21 @@ const Header = () => (
 
 const CreatePostWizard = () => {
   const { user, isLoaded } = useUser();
-  console.log({ user });
+  const ctx = api.useContext();
+  const { mutate, isLoading: isCreatingPost } = api.post.create.useMutation({
+    onSuccess: () => {
+      setContent("");
+      void ctx.post.invalidate();
+    },
+  });
+
+  const [content, setContent] = useState("");
+  const handleInput: ChangeEventHandler<HTMLInputElement> = (e) => {
+    setContent(e.target.value);
+  };
+  const handlePost = () => {
+    mutate({ content: content });
+  };
 
   if (!isLoaded) return null;
   if (!user)
@@ -51,14 +66,19 @@ const CreatePostWizard = () => {
         alt="user profile image"
       />
       <input
+        value={content}
+        onChange={handleInput}
         placeholder="What's on your emoji today?"
         className="grow bg-transparent outline-none"
       />
+      <button disabled={isCreatingPost} onClick={handlePost}>
+        Post
+      </button>
     </div>
   );
 };
 const Posts = () => {
-  const { data, isLoading } = api.post.getAll.useQuery();
+  const { data, isLoading, isFetching } = api.post.getAll.useQuery();
 
   if (isLoading) return <Loading />;
   if (!data)
@@ -70,6 +90,11 @@ const Posts = () => {
 
   return (
     <div>
+      {isFetching && (
+        <div className="flex items-center justify-center gap-4 border-b border-slate-400 p-4">
+          <LoadingSpinner />
+        </div>
+      )}
       {data?.map(({ post, author }) => (
         <div key={post.id} className="flex gap-4 border-b border-slate-400 p-4">
           <Image
