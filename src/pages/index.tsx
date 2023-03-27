@@ -76,7 +76,7 @@ const CreatePostWizard = () => {
   if (!isLoaded) return null;
   if (!user)
     return (
-      <div className="border--400 border-b p-4 font-bold text-red-500">
+      <div className="border-b border-slate-400 p-4 font-bold text-red-500">
         Something went wrong
       </div>
     );
@@ -119,7 +119,7 @@ const Posts = () => {
   if (isLoading) return <Loading />;
   if (!data)
     return (
-      <div className="border--400 border-b p-4 font-bold text-red-500">
+      <div className="border-b border-slate-400 p-4 font-bold text-red-500">
         Something went wrong
       </div>
     );
