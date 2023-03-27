@@ -9,7 +9,7 @@ import {
 import { type NextPage } from "next";
 import Head from "next/head";
 
-const Home: NextPage = () => {
+const AuthPage: NextPage = () => {
   return (
     <>
       <Head>
@@ -28,7 +28,7 @@ const Home: NextPage = () => {
         <SignedOut>
           <div className="w-48">
             <SignInButton mode="modal">
-              <button className="w-full rounded-3xl bg-white p-4 text-xl font-bold">
+              <button className="w-full rounded-3xl bg-white p-4 text-xl font-bold text-slate-600">
                 Sign In
               </button>
             </SignInButton>
@@ -39,7 +39,7 @@ const Home: NextPage = () => {
           <div className="flex flex-col gap-4 p-10">
             <UserProfile />
             <SignOutButton>
-              <button className="w-full rounded-3xl bg-white p-4 text-xl font-bold">
+              <button className="w-full rounded-3xl bg-white p-4 text-xl font-bold text-slate-600">
                 Sign Out
               </button>
             </SignOutButton>
@@ -50,4 +50,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default AuthPage;
