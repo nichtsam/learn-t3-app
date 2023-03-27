@@ -21,12 +21,10 @@ const Home: NextPage = () => {
         <meta name="description" content="Me learning t3 app" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className="h-screen">
-        <div className="m-auto h-full border-x border-slate-400 md:max-w-2xl">
-          <Header />
-          <CreatePostWizard />
-          <Posts />
-        </div>
+      <main className="m-auto h-auto min-h-screen border-x border-slate-400 md:max-w-2xl">
+        <Header />
+        <CreatePostWizard />
+        <Posts />
       </main>
     </>
   );
