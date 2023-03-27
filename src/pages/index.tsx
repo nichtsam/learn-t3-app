@@ -11,6 +11,7 @@ import {
   type KeyboardEventHandler,
 } from "react";
 import { toast } from "react-hot-toast";
+import Link from "next/link";
 
 const Home: NextPage = () => {
   return (
@@ -143,9 +144,17 @@ const Posts = () => {
           />
           <div className="flex flex-col">
             <span className="flex gap-2 font-bold">
-              {author.username}
-              <span className="font-normal text-slate-400">
-                {`@${author.username} · ${dayjs(post.createdAt).fromNow()}`}
+              <Link href={`/@${author.username}`}>
+                <span className="hover:underline">{author.username}</span>
+              </Link>
+              <span className="inline-flex gap-2 font-normal text-slate-400">
+                <Link className="hover:underline" href={`/@${author.username}`}>
+                  <span>@{author.username}</span>
+                </Link>
+                <span>·</span>
+                <Link className="hover:underline" href={`/post/${post.id}`}>
+                  <span>{dayjs(post.createdAt).fromNow()}</span>
+                </Link>
               </span>
             </span>
             <span>{post.content}</span>
