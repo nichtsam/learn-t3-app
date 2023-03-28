@@ -9,6 +9,7 @@ import {
   privateProcedure,
   publicProcedure,
 } from "~/server/api/trpc";
+import { filterUser } from "~/utils/filterUser";
 
 const ratelimit = new Ratelimit({
   redis: Redis.fromEnv(),
@@ -27,7 +28,7 @@ export const postRouter = createTRPCRouter({
         userId: posts.map((post) => post.authorId),
         limit: 100,
       })
-    ).map(filterAuthor);
+    ).map(filterUser);
 
     return posts.map((post) => {
       const author = authors.find((author) => author.id === post.authorId);
@@ -69,8 +70,3 @@ export const postRouter = createTRPCRouter({
       });
     }),
 });
-
-const filterAuthor = (author: User) => {
-  const { id, username, profileImageUrl } = author;
-  return { id, username, profileImageUrl };
-};
