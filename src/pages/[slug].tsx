@@ -29,6 +29,7 @@ const ProfilePage: NextPage<{ username: string }> = ({ username }) => {
             username={data.username ?? username}
             profileImageUrl={data.profileImageUrl}
           />
+          <Posts userId={data.id} />
         </div>
       </main>
     </>
@@ -53,6 +54,13 @@ const Profile = ({
     <span className="bold absolute -bottom-10 left-32 text-3xl">{`@${username}`}</span>
   </div>
 );
+
+import { Posts as InnerPosts } from "~/components/posts";
+const Posts = ({ userId }: { userId: string }) => {
+  const { data, isLoading } = api.post.getPostsByUserId.useQuery(userId);
+
+  return <InnerPosts data={data} loading={isLoading} />;
+};
 
 export const getStaticPaths: GetStaticPaths = () => {
   return {

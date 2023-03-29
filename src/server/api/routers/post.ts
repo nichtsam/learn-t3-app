@@ -17,6 +17,35 @@ const ratelimit = new Ratelimit({
 });
 
 export const postRouter = createTRPCRouter({
+  getPostsByUserId: publicProcedure
+    .input(z.string())
+    .query(async ({ ctx, input: userId }) => {
+      const posts = await ctx.prisma.post.findMany({
+        where: {
+          authorId: userId,
+        },
+        take: 100,
+        orderBy: [{ createdAt: "desc" }],
+      });
+
+      const author = filterUser(await clerkClient.users.getUser(userId));
+
+      if (!author || !author.username)
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Author not found",
+        });
+
+      return posts.map((post) => ({
+        post,
+        author: {
+          ...author,
+          // too lazy too handle all these stuff.
+          username: author.username as string,
+        },
+      }));
+    }),
+
   getAll: publicProcedure.query(async ({ ctx }) => {
     const posts = await ctx.prisma.post.findMany({
       take: 100,
