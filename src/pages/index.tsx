@@ -1,4 +1,4 @@
-import { useUser } from "@clerk/nextjs";
+import { SignIn, SignInButton, useUser } from "@clerk/nextjs";
 import { type NextPage } from "next";
 import Head from "next/head";
 import { api } from "~/utils/api";
@@ -74,8 +74,8 @@ const CreatePostWizard = () => {
   if (!isLoaded) return null;
   if (!user)
     return (
-      <div className="border-b border-slate-400 p-4 font-bold text-red-500">
-        Something went wrong
+      <div className="border-b border-slate-400 p-4 font-bold text-green-500">
+        <SignInButton>Sign in to post emoijs</SignInButton>
       </div>
     );
 
