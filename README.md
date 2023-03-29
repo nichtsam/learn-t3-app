@@ -1,3 +1,8 @@
+Just a little something to show I know atleast the basics,  
+got pretty lazy and probably going delete this repo someday.  
+
+reference: [T3 Stack Tutorial - FROM 0 TO PROD FOR $0 (by Theo - t3․gg)](https://youtu.be/YkOSUVzOAA4)
+
 # Create T3 App
 
 This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
