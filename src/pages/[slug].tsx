@@ -2,6 +2,7 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import { api } from "~/utils/api";
 import { createProxySSGHelpers } from "~/utils/ssgHelper";
+import Image from "next/image";
 
 const ProfilePage: NextPage<{ username: string }> = ({ username }) => {
   const { data } = api.profile.getUserByUsername.useQuery(username);
@@ -24,16 +25,33 @@ const ProfilePage: NextPage<{ username: string }> = ({ username }) => {
       </Head>
       <main className="h-screen">
         <div className="m-auto h-full border-x border-slate-400 md:max-w-2xl">
-          <Header />
-          <div>{data?.username}</div>
+          <Profile
+            username={data.username ?? username}
+            profileImageUrl={data.profileImageUrl}
+          />
         </div>
       </main>
     </>
   );
 };
 
-const Header = () => (
-  <div className="border-b border-slate-400 p-4">Profile</div>
+const Profile = ({
+  username,
+  profileImageUrl,
+}: {
+  username: string;
+  profileImageUrl: string;
+}) => (
+  <div className="relative h-40 bg-slate-600">
+    <Image
+      src={profileImageUrl}
+      height={96}
+      width={96}
+      className="absolute -bottom-12 left-4 h-24 w-24 rounded-full border-2 border-black"
+      alt={`${username}'s profile image`}
+    />
+    <span className="bold absolute -bottom-10 left-32 text-3xl">{`@${username}`}</span>
+  </div>
 );
 
 export const getStaticPaths: GetStaticPaths = () => {
