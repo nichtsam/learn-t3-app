@@ -42,7 +42,7 @@ const Profile = ({
   username: string;
   profileImageUrl: string;
 }) => (
-  <div className="relative h-40 bg-slate-600">
+  <div className="relative mb-12 h-40 bg-slate-600">
     <Image
       src={profileImageUrl}
       height={96}
