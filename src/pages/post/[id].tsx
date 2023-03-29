@@ -1,5 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
+import { Layout } from "~/components/layout";
 
 const SinglePostPage: NextPage = () => {
   return (
@@ -7,11 +8,9 @@ const SinglePostPage: NextPage = () => {
       <Head>
         <title>Learn T3 App | Post</title>
       </Head>
-      <main className="h-screen">
-        <div className="m-auto h-full border-x border-slate-400 md:max-w-2xl">
-          <Header />
-        </div>
-      </main>
+      <Layout>
+        <Header />
+      </Layout>
     </>
   );
 };
